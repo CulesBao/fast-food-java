@@ -26,12 +26,12 @@ CREATE TABLE `accounts` (
                             `id` int NOT NULL AUTO_INCREMENT,
                             `username` varchar(100) NOT NULL,
                             `password` varchar(100) NOT NULL,
-                            `name` varchar(100) NOT NULL,
+                            `fullName` varchar(100) NOT NULL,
                             `role` enum('ADMIN','STAFF','ULTIMATE') NOT NULL,
-                            `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+                            `createdAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
                             PRIMARY KEY (`id`),
-                            UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+                            UNIQUE KEY `userName` (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -55,7 +55,7 @@ CREATE TABLE `foods` (
                          `name` varchar(100) NOT NULL,
                          `price` decimal(10,2) NOT NULL,
                          `available` tinyint(1) DEFAULT '1',
-                         `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+                         `createdAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
                          PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -70,34 +70,34 @@ LOCK TABLES `foods` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `order_items`
+-- Table structure for table `orderItems`
 --
 
-DROP TABLE IF EXISTS `order_items`;
+DROP TABLE IF EXISTS `orderItems`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `order_items` (
-                               `id` int NOT NULL AUTO_INCREMENT,
-                               `order_id` int NOT NULL,
-                               `food_id` int NOT NULL,
-                               `quantity` int NOT NULL DEFAULT '1',
-                               `unit_price` decimal(10,2) NOT NULL,
-                               `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-                               PRIMARY KEY (`id`),
-                               KEY `order_id` (`order_id`),
-                               KEY `food_id` (`food_id`),
-                               CONSTRAINT `order_items_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`),
-                               CONSTRAINT `order_items_ibfk_2` FOREIGN KEY (`food_id`) REFERENCES `foods` (`id`)
+CREATE TABLE `orderItems` (
+                              `id` int NOT NULL AUTO_INCREMENT,
+                              `orderId` int NOT NULL,
+                              `foodId` int NOT NULL,
+                              `quantity` int NOT NULL DEFAULT '1',
+                              `unitPrice` decimal(10,2) NOT NULL,
+                              `createdAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+                              PRIMARY KEY (`id`),
+                              KEY `orderId` (`orderId`),
+                              KEY `foodId` (`foodId`),
+                              CONSTRAINT `orderItems_ibfk_1` FOREIGN KEY (`orderId`) REFERENCES `orders` (`id`),
+                              CONSTRAINT `orderItems_ibfk_2` FOREIGN KEY (`foodId`) REFERENCES `foods` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `order_items`
+-- Dumping data for table `orderItems`
 --
 
-LOCK TABLES `order_items` WRITE;
-/*!40000 ALTER TABLE `order_items` DISABLE KEYS */;
-/*!40000 ALTER TABLE `order_items` ENABLE KEYS */;
+LOCK TABLES `orderItems` WRITE;
+/*!40000 ALTER TABLE `orderItems` DISABLE KEYS */;
+/*!40000 ALTER TABLE `orderItems` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -109,12 +109,12 @@ DROP TABLE IF EXISTS `orders`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `orders` (
                           `id` int NOT NULL AUTO_INCREMENT,
-                          `staff_id` int NOT NULL,
+                          `staffId` int NOT NULL,
                           `status` enum('PENDING','PAID','CANCEL') DEFAULT 'PENDING',
-                          `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+                          `createdAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
                           PRIMARY KEY (`id`),
-                          KEY `staff_id` (`staff_id`),
-                          CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`staff_id`) REFERENCES `accounts` (`id`)
+                          KEY `staffId` (`staffId`),
+                          CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`staffId`) REFERENCES `accounts` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -140,4 +140,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-04-29 15:53:01
+-- Dump completed on 2025-04-29 16:57:49
