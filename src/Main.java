@@ -1,5 +1,9 @@
+import CONFIG.DBHelper;
+import CONFIG.GlobalExceptionHandler;
+
 public class Main {
   public static void main(String[] args) {
-    System.out.println("Hello, world");
+    GlobalExceptionHandler.setup();
+    DBHelper.getInstance();
   }
 }
