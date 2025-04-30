@@ -1,17 +1,22 @@
 package GUI;
 
+import CONFIG.DBHelper;
+import DTO.*;
+import org.mindrot.jbcrypt.BCrypt;
 import javax.swing.*;
 import java.awt.*;
+import java.sql.*;
 
 public class LoginForm {
     private JTextField usernameField;
     private JPasswordField passwordField;
     private JButton loginButton;
     private JPanel panel1;
+    private final JFrame frame;
 
     public LoginForm() {
         // Khởi tạo JFrame
-        JFrame frame = new JFrame("Fast Food");
+        frame = new JFrame("Fast Food");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setPreferredSize(new Dimension(500, 300));
         frame.setResizable(false);
@@ -52,5 +57,57 @@ public class LoginForm {
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+
+        // Thêm ActionListener cho loginButton
+        loginButton.addActionListener(e -> handleLogin());
+    }
+
+    // Xử lý sự kiện đăng nhập
+    private void handleLogin() {
+        // Lấy thông tin từ giao diện và tạo LoginFormDTO
+        String username = usernameField.getText().trim();
+        String password = new String(passwordField.getPassword()).trim();
+        LoginFormDTO loginFormDTO = new LoginFormDTO(username, password);
+
+        // Gọi phương thức đăng nhập và nhận ResponseDTO
+        ResponseDTO response = authenticateUser(loginFormDTO);
+
+        // Hiển thị kết quả cho người dùng
+        if (response.getSuccess()) {
+            JOptionPane.showMessageDialog(frame, response.getMessage(), "Success", JOptionPane.INFORMATION_MESSAGE);
+            // TODO: Chuyển đến giao diện tiếp theo dựa trên role (dữ liệu role nằm trong response.getData())
+        } else {
+            JOptionPane.showMessageDialog(frame, response.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    // Phương thức xác thực người dùng
+    private ResponseDTO authenticateUser(LoginFormDTO loginFormDTO) {
+        // Kiểm tra dữ liệu đầu vào
+        if (loginFormDTO.getUsername().isEmpty() || loginFormDTO.getPassword().isEmpty()) {
+            return new ResponseDTO(false, "Please enter both username and password", null);
+        }
+
+        // Truy vấn cơ sở dữ liệu để kiểm tra thông tin đăng nhập
+        String query = "SELECT password, role FROM accounts WHERE username = ?";
+        try (ResultSet rs = DBHelper.executeQuery(query, loginFormDTO.getUsername())) {
+            if (rs != null && rs.next()) {
+                String hashedPassword = rs.getString("password");
+                String role = rs.getString("role");
+
+                // So sánh mật khẩu với jbcrypt
+                if (BCrypt.checkpw(loginFormDTO.getPassword(), hashedPassword)) {
+                    // Đăng nhập thành công, trả về role trong data
+                    return new ResponseDTO(true, "Login successfully! Role: " + role, role);
+                } else {
+                    return new ResponseDTO(false, "Invalid username or password", null);
+                }
+            } else {
+                return new ResponseDTO(false, "Invalid username or password", null);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return new ResponseDTO(false, "Database error: " + ex.getMessage(), null);
+        }
     }
 }
