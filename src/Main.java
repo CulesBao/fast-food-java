@@ -1,10 +1,10 @@
-import CONFIG.DBHelper;
 import CONFIG.GlobalExceptionHandler;
+import CONFIG.SeedData;
 
 public class Main {
   public static void main(String[] args) {
     GlobalExceptionHandler.setup();
-    DBHelper.getInstance();
+    new SeedData();
     new GUI.LoginForm();
   }
 }
