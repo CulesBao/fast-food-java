@@ -1,4 +1,4 @@
-package CONFIG;
+package Config;
 
 import java.sql.ResultSet;
 import org.mindrot.jbcrypt.BCrypt;

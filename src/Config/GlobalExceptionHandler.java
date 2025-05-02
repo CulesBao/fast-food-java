@@ -1,4 +1,4 @@
-package CONFIG;
+package Config;
 
 import javax.swing.*;
 import java.awt.*;
