@@ -18,7 +18,8 @@ public class LoginForm {
         // Khởi tạo JFrame
         frame = new JFrame("Fast Food");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setPreferredSize(new Dimension(500, 300));
+
+        frame.setPreferredSize(new Dimension(800, 600));
         frame.setResizable(false);
 
         // Khởi tạo panel1 với BoxLayout để căn giữa
@@ -54,6 +55,7 @@ public class LoginForm {
 
         // Thêm panel1 vào frame
         frame.add(panel1);
+
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
