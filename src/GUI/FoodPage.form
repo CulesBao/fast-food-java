@@ -48,7 +48,7 @@
         <border type="none"/>
         <children/>
       </grid>
-      <grid id="c4d8f" layout-manager="GridLayoutManager" row-count="9" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="c4d8f" layout-manager="GridLayoutManager" row-count="10" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -126,6 +126,11 @@
               <text value="Add"/>
             </properties>
           </component>
+          <vspacer id="e85c8">
+            <constraints>
+              <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </vspacer>
         </children>
       </grid>
       <scrollpane id="89d03">
@@ -135,7 +140,7 @@
         <properties/>
         <border type="none"/>
         <children>
-          <component id="f56af" class="javax.swing.JTable" binding="table1" default-binding="true">
+          <component id="f56af" class="javax.swing.JTable" binding="foodTable">
             <constraints/>
             <properties/>
           </component>

@@ -14,7 +14,7 @@ public class FoodPage {
     private JComboBox food_typeComboBox;
     private JTextField priceField;
     private JButton add_foodButton;
-    private JTable table1;
+    private JTable foodTable;
     private JFrame frame;
 
 
@@ -27,11 +27,11 @@ public class FoodPage {
 
         frame.add(food_pagePanel);
 
-        String[] columnNames = {"Mã hàng", "Tên hàng", "Nhóm hàng", "Giá bán"};
+        String[] columnNames = {"Food ID", "Name", "Type", "Price"};
         Object[][] data = {};
 
         DefaultTableModel model = new DefaultTableModel(data, columnNames);
-        table1.setModel(model);
+        foodTable.setModel(model);
 
 
         frame.pack();
