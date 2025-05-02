@@ -49,12 +49,4 @@ public class FoodDTO {
   public void setCreatedAt(Timestamp createdAt) {
     this.createdAt = createdAt;
   }
-
-  public boolean isValid() {
-    return name != null
-        && !name.isEmpty()
-        && price != null
-        && price.compareTo(BigDecimal.ZERO) > 0
-        && createdAt != null;
-  }
 }

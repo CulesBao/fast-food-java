@@ -10,6 +10,15 @@ public class AccountDTO {
   private String role;
   private Timestamp createdAt;
 
+  public AccountDTO(int id, String userName, String passWord, String fullName, String role, Timestamp createdAt) {
+    this.id = id;
+    this.userName = userName;
+    this.passWord = passWord;
+    this.fullName = fullName;
+    this.role = role;
+    this.createdAt = createdAt;
+  }
+
   public int getId() {
     return id;
   }
@@ -56,16 +65,5 @@ public class AccountDTO {
 
   public void setCreatedAt(Timestamp createdAt) {
     this.createdAt = createdAt;
-  }
-
-  public boolean isValid() {
-    return userName != null
-        && !userName.isEmpty()
-        && passWord != null
-        && !passWord.isEmpty()
-        && fullName != null
-        && !fullName.isEmpty()
-        && role != null
-        && (role.equals("ADMIN") || role.equals("STAFF") || role.equals("ULTIMATE"));
   }
 }

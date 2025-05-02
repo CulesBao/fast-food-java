@@ -39,11 +39,4 @@ public class OrderDTO {
   public void setCreatedAt(Timestamp createdAt) {
     this.createdAt = createdAt;
   }
-
-  public boolean isValid() {
-    return staffId > 0
-        && status != null
-        && (status.equals("PENDING") || status.equals("PAID") || status.equals("CANCEL"))
-        && createdAt != null;
-  }
 }

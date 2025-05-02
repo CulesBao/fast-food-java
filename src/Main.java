@@ -1,5 +1,5 @@
-import CONFIG.GlobalExceptionHandler;
-import CONFIG.SeedData;
+import Config.GlobalExceptionHandler;
+import Config.SeedData;
 
 public class Main {
   public static void main(String[] args) {

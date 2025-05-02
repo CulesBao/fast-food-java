@@ -58,13 +58,4 @@ public class OrderItemDTO {
   public void setCreatedAt(Timestamp createdAt) {
     this.createdAt = createdAt;
   }
-
-  public boolean isValid() {
-    return orderId > 0
-        && foodId > 0
-        && quantity > 0
-        && unitPrice != null
-        && unitPrice.compareTo(BigDecimal.ZERO) > 0
-        && createdAt != null;
-  }
 }
