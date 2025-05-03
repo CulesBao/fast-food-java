@@ -9,11 +9,18 @@ public class StaffPage {
     private JButton backButton;
     private JButton refreshButton;
     private JTextField staff_idField;
-    private JTextField food_nameField;
+    private JTextField staff_nameField;
     private JButton add_staffButton;
     private JTable staffTable;
-    private JLabel staff_nameField;
-    private JTextField phone_numberField;
+    private JTextField staff_phoneField;
+    private JTextField staff_id_infField;
+    private JTextField staff_name_infField;
+    private JTextField staff_username_infField;
+    private JTextField staff_password_infField;
+    private JTextField staff_phone_infField;
+    private JButton confirmButton;
+    private JButton lockButton;
+    private JButton deleteButton;
 
     private JFrame frame;
 
