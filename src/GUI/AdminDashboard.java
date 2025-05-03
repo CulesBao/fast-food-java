@@ -17,6 +17,7 @@ public class AdminDashboard {
     private JLabel staff_manageImage;
     private JLabel ordersImage;
     private JLabel revenueImage;
+    private JButton logoutButton;
 
     private JFrame frame;
     public AdminDashboard() {
