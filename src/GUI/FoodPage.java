@@ -3,6 +3,7 @@ package GUI;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 
 public class FoodPage {
     private JPanel food_pagePanel;
@@ -28,7 +29,7 @@ public class FoodPage {
 
         frame = new JFrame("Food Page");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        frame.setPreferredSize(new Dimension(800, 600));
         frame.setResizable(false);
 
         frame.add(food_pagePanel);
