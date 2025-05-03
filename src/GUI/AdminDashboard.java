@@ -7,7 +7,7 @@ public class AdminDashboard {
     private JButton staff_manageButton;
     private JButton foodButton;
     private JButton revenueButton;
-    private JButton ordersButton;
+    private JButton accountButton;
     private JPanel staff_managePanel;
     private JPanel foodPanel;
     private JPanel ordersPanel;
@@ -22,7 +22,7 @@ public class AdminDashboard {
     private JFrame frame;
     public AdminDashboard() {
         frame = new JFrame("Admin Dashboard");
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setPreferredSize(new Dimension(800, 600));
         frame.setResizable(false);
 
