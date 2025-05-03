@@ -20,13 +20,14 @@ public class FoodPage {
     private JButton confirmButton;
     private JButton deleteButton;
     private JComboBox food_type_infComboBox;
+    private JTextField food_price_infField;
     private JFrame frame;
 
 
     public FoodPage(){
 
         frame = new JFrame("Food Page");
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         frame.setResizable(false);
 
