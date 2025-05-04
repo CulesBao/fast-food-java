@@ -1,24 +1,16 @@
 package Config;
 
-import javax.swing.*;
-import java.awt.*;
+import Utils.CustomDialog;
 
-public class GlobalExceptionHandler implements Thread.UncaughtExceptionHandler{
-    @Override
-    public void uncaughtException(Thread t, Throwable e) {
-        e.printStackTrace();
+public class GlobalExceptionHandler implements Thread.UncaughtExceptionHandler {
 
-        EventQueue.invokeLater(() -> {
-            JOptionPane.showMessageDialog(
-                    null,
-                    "Error: " + e.getMessage(),
-                    "System Error",
-                    JOptionPane.ERROR_MESSAGE
-            );
-        });
-    }
+  public static void setup() {
+    Thread.setDefaultUncaughtExceptionHandler(new GlobalExceptionHandler());
+  }
 
-    public static void setup() {
-        Thread.setDefaultUncaughtExceptionHandler(new GlobalExceptionHandler());
-    }
+  @Override
+  public void uncaughtException(Thread t, Throwable e) {
+    e.printStackTrace();
+    CustomDialog.show(false, "Unexpected Error:  " + e.getMessage());
+  }
 }

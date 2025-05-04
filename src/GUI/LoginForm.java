@@ -2,6 +2,7 @@ package GUI;
 
 import BLL.AccountBLL;
 import DTO.*;
+import Utils.CustomDialog;
 import java.awt.*;
 import javax.swing.*;
 
@@ -64,11 +65,10 @@ public class LoginForm {
     ResponseDTO response = accountBLL.authenticateUser(loginFormDTO);
 
     if (response.getSuccess()) {
-      JOptionPane.showMessageDialog(
-          frame, response.getMessage(), "Success", JOptionPane.INFORMATION_MESSAGE);
-    } else {
-      JOptionPane.showMessageDialog(
-          frame, response.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+      CustomDialog.show(true, response.getMessage());
+    }
+    else {
+      CustomDialog.show(false, "Error: " + response.getMessage());
     }
   }
 }
