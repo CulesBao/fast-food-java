@@ -22,7 +22,7 @@ public class AccountBLL {
       }
       if (BCrypt.checkpw(loginFormDTO.getPassword(), accountDTO.getPassWord())) {
         Session.setSession(accountDTO.getId(), accountDTO.getFullName(), accountDTO.getRole());
-        return new ResponseDTO(true, "Login successful", accountDTO);
+        return new ResponseDTO(true, "Login successfully", accountDTO);
       } else {
         return new ResponseDTO(false, "Wrong username or password", null);
       }

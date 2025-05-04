@@ -66,6 +66,15 @@ public class LoginForm {
 
     if (response.getSuccess()) {
       CustomDialog.show(true, response.getMessage());
+      AccountDTO accountDTO = (AccountDTO) response.getData();
+      if ("Admin".equalsIgnoreCase(accountDTO.getRole())){
+        new AdminDashboard();
+      } else if ("Staff".equalsIgnoreCase(accountDTO.getRole())) {
+        new StaffDashboard();
+      } else {
+        JOptionPane.showMessageDialog(
+            frame, "Unknown role: " + accountDTO.getRole(), "Error", JOptionPane.ERROR_MESSAGE);
+      }
     }
     else {
       CustomDialog.show(false, "Error: " + response.getMessage());

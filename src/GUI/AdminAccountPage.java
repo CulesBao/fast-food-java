@@ -23,7 +23,6 @@ public class AdminAccountPage {
         frame.setResizable(false);
         frame.setContentPane(admin_account_pagePanel);
 
-
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
