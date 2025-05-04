@@ -40,7 +40,6 @@ public class FoodPage {
         DefaultTableModel model = new DefaultTableModel(data, columnNames);
         foodTable.setModel(model);
 
-
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);

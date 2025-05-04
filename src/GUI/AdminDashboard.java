@@ -38,7 +38,6 @@ public class AdminDashboard {
         accountImage.setIcon(foodIcon);
         revenueImage.setIcon(foodIcon);
 
-
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);

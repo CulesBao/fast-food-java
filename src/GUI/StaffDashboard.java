@@ -27,10 +27,8 @@ public class StaffDashboard {
         ordersImage.setIcon(ordersIcon);
         accountImage.setIcon(accountIcon);
 
-
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-
     }
 }
