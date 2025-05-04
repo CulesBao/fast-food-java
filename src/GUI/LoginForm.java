@@ -2,6 +2,7 @@ package GUI;
 
 import BLL.AccountBLL;
 import DTO.*;
+import Utils.CustomDialog;
 import java.awt.*;
 import javax.swing.*;
 
@@ -64,8 +65,7 @@ public class LoginForm {
     ResponseDTO response = accountBLL.authenticateUser(loginFormDTO);
 
     if (response.getSuccess()) {
-      JOptionPane.showMessageDialog(
-          frame, response.getMessage(), "Success", JOptionPane.INFORMATION_MESSAGE);
+      CustomDialog.show(true, response.getMessage());
       AccountDTO accountDTO = (AccountDTO) response.getData();
       if ("Admin".equalsIgnoreCase(accountDTO.getRole())){
         new AdminDashboard();
@@ -75,9 +75,9 @@ public class LoginForm {
         JOptionPane.showMessageDialog(
             frame, "Unknown role: " + accountDTO.getRole(), "Error", JOptionPane.ERROR_MESSAGE);
       }
-    } else {
-      JOptionPane.showMessageDialog(
-          frame, response.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    else {
+      CustomDialog.show(false, "Error: " + response.getMessage());
     }
   }
 }

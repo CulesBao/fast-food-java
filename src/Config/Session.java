@@ -1,6 +1,7 @@
 package Config;
 
 public class Session {
+    // Session class to manage user session data
     public static int accountId;
     public static String fullName;
     public static String role;
