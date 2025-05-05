@@ -2,7 +2,7 @@ package GUI;
 
 import CONFIG.DBHelper;
 import DTO.*;
-import org.mindrot.jbcrypt.BCrypt;
+//import org.mindrot.jbcrypt.BCrypt;
 import javax.swing.*;
 import java.awt.*;
 import java.sql.*;
@@ -17,7 +17,7 @@ public class LoginForm {
     public LoginForm() {
         // Khởi tạo JFrame
         frame = new JFrame("Fast Food");
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         frame.setPreferredSize(new Dimension(800, 600));
         frame.setResizable(false);
@@ -98,12 +98,12 @@ public class LoginForm {
                 String role = rs.getString("role");
 
                 // So sánh mật khẩu với jbcrypt
-                if (BCrypt.checkpw(loginFormDTO.getPassword(), hashedPassword)) {
-                    // Đăng nhập thành công, trả về role trong data
+//                if (BCrypt.checkpw(loginFormDTO.getPassword(), hashedPassword)) {
+//                    // Đăng nhập thành công, trả về role trong data
                     return new ResponseDTO(true, "Login successfully! Role: " + role, role);
-                } else {
-                    return new ResponseDTO(false, "Invalid username or password", null);
-                }
+//                } else {
+//                    return new ResponseDTO(false, "Invalid username or password", null);
+//                }
             } else {
                 return new ResponseDTO(false, "Invalid username or password", null);
             }

@@ -1,7 +1,7 @@
 package CONFIG;
 
 import java.sql.ResultSet;
-import org.mindrot.jbcrypt.BCrypt;
+//import org.mindrot.jbcrypt.BCrypt;
 
 public class SeedData {
   public SeedData() {
@@ -14,8 +14,8 @@ public class SeedData {
     try {
       if (!rs.next()) {
         String insertQuery = "INSERT INTO accounts (username, password, fullName, role) VALUES (?, ?, ?, ?)";
-        DBHelper.executeUpdate(
-            insertQuery, "admin", BCrypt.hashpw("admin", BCrypt.gensalt()), "ADMIN", "ADMIN");
+//        DBHelper.executeUpdate(
+//            insertQuery, "admin", BCrypt.hashpw("admin", BCrypt.gensalt()), "ADMIN", "ADMIN");
         return;
       }
     } catch (Exception e) {
