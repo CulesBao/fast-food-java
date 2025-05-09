@@ -69,6 +69,7 @@ public class LoginForm {
       AccountDTO accountDTO = (AccountDTO) response.getData();
       if ("Admin".equalsIgnoreCase(accountDTO.getRole())){
         new AdminDashboard();
+        frame.dispose();
       } else if ("Staff".equalsIgnoreCase(accountDTO.getRole())) {
         new StaffDashboard();
       } else {
