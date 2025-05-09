@@ -7,8 +7,16 @@ public class FoodDTO {
   private int id;
   private String name;
   private BigDecimal price;
-  private boolean available;
+  private int quantity;
   private Timestamp createdAt;
+
+    public FoodDTO(int id, String name, BigDecimal price, int quantity, Timestamp createdAt) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
+        this.createdAt = createdAt;
+    }
 
   public int getId() {
     return id;
@@ -34,12 +42,12 @@ public class FoodDTO {
     this.price = price;
   }
 
-  public boolean isAvailable() {
-    return available;
+  public int getQuantity() {
+    return quantity;
   }
 
-  public void setAvailable(boolean available) {
-    this.available = available;
+  public void setQuantity(int quantity) {
+    this.quantity = quantity;
   }
 
   public Timestamp getCreatedAt() {

@@ -2,26 +2,23 @@ package DTO;
 
 import java.sql.Timestamp;
 
-public class AccountDTO {
+public class FindAccountDTO {
   private int id;
   private String userName;
-  private String passWord;
   private String fullName;
   private String phoneNumber;
   private String role;
   private Timestamp createdAt;
 
-  public AccountDTO(
+  public FindAccountDTO(
       int id,
       String userName,
-      String passWord,
       String fullName,
       String phoneNumber,
       String role,
       Timestamp createdAt) {
     this.id = id;
     this.userName = userName;
-    this.passWord = passWord;
     this.fullName = fullName;
     this.phoneNumber = phoneNumber;
     this.role = role;
@@ -42,14 +39,6 @@ public class AccountDTO {
 
   public void setUserName(String userName) {
     this.userName = userName;
-  }
-
-  public String getPassWord() {
-    return passWord;
-  }
-
-  public void setPassWord(String passWord) {
-    this.passWord = passWord;
   }
 
   public String getFullName() {
