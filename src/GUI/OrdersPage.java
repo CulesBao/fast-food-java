@@ -6,22 +6,21 @@ import java.awt.*;
 
 public class OrdersPage {
     private JPanel orders_pagePanel;
-    private JTable ordersTable;
-    private JTextField order_idField;
-    private JTextField customer_nameField;
-    private JComboBox order_statusComboBox;
-    private JTextField customer_phoneField;
+    private JTable food_listTable;
+    private JTextField idField;
+    private JTextField nameField;
+    private JTextField quantityField;
     private JButton add_foodButton;
     private JButton backButton;
     private JButton refreshButton;
-    private JTextField order_id_infField;
-    private JTextField customer_name_infField;
-    private JComboBox rder_status_infComboBox;
-    private JTextField customer_phone_infField;
     private JButton confirmButton;
     private JButton deleteButton;
+    private JTextField amountField;
+    private JTextField customer_nameField;
+    private JTextField customer_phoneField;
+    private JTable order_detailTable;
+    private JTextField priceField;
     private JTextField totalField;
-    private JTextField total_infField;
 
     public OrdersPage(){
         JFrame  frame = new JFrame("Orders Page");
@@ -30,11 +29,17 @@ public class OrdersPage {
         frame.setResizable(false);
 
         frame.add(orders_pagePanel);
-        String[] columnNames = {"Order ID", "Customer Name", "Status", "Phone", "Total"};
-        Object[][] data = {};
+        String[] column1Names = {" Food ID", "Food Name", "Price", "Quantity", "Created At"};
+        Object[][] data1 = {};
 
-        DefaultTableModel model = new DefaultTableModel(data, columnNames);
-        ordersTable.setModel(model);
+        String[] column2Names = {"ID", "Name", "Price", "Quantity", "Total"};
+        Object[][] data2 = {};
+
+        DefaultTableModel model1 = new DefaultTableModel(data1, column1Names);
+        food_listTable.setModel(model1);
+
+        DefaultTableModel model2 = new DefaultTableModel(data2, column2Names);
+        food_listTable.setModel(model2);
 
         frame.pack();
         frame.setLocationRelativeTo(null);

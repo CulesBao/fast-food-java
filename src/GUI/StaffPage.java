@@ -21,6 +21,11 @@ public class StaffPage {
     private JButton confirmButton;
     private JButton lockButton;
     private JButton deleteButton;
+    private JTextField name_findField;
+    private JTextField phone_findField;
+    private JButton findButton;
+    private JTextField staff_usernameField;
+    private JPasswordField staff_passwordField;
 
     private JFrame frame;
 
@@ -32,7 +37,7 @@ public class StaffPage {
 
         frame.add(staff_pagePanel);
 
-        String[] columnNames = {"Staff ID", "Name", "Phone number"};
+        String[] columnNames = {"Staff ID", "Name", "Username", "Created at", "Phone number"};
         Object[][] data = {};
 
         DefaultTableModel model = new DefaultTableModel(data, columnNames);
