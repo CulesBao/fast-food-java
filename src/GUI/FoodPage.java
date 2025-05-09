@@ -11,8 +11,7 @@ public class FoodPage {
     private JButton refreshButton;
     private JTextField food_idField;
     private JTextField food_nameField;
-    private JComboBox food_typeComboBox;
-    private JTextField priceField;
+    private JTextField food_priceField;
     private JButton add_foodButton;
     private JTable foodTable;
     private JTextField food_id_infField;
@@ -20,8 +19,10 @@ public class FoodPage {
     private JTextField food_quantity_infField;
     private JButton confirmButton;
     private JButton deleteButton;
-    private JComboBox food_type_infComboBox;
     private JTextField food_price_infField;
+    private JTextField food_quantityField;
+    private JButton findButton;
+    private JTextField food_name_findField;
     private JFrame frame;
 
 
@@ -34,7 +35,7 @@ public class FoodPage {
 
         frame.add(food_pagePanel);
 
-        String[] columnNames = {"Food ID", "Name", "Type", "Price"};
+        String[] columnNames = {"Food ID", "Name", "Quantity", "Price", "Created At"};
         Object[][] data = {};
 
         DefaultTableModel model = new DefaultTableModel(data, columnNames);

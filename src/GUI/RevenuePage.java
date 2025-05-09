@@ -13,6 +13,13 @@ public class RevenuePage {
     private JButton viewStatsButton;
     private JTable revenueTable;
     private JButton backButton;
+    private JTextField order_id_infField;
+    private JTextField customer_name_infField;
+    private JTextField customer_phone_infField;
+    private JComboBox status_comboBox;
+    private JButton updateButton;
+    private JButton detailButton;
+    private JButton deleteButton;
 
     private JDateChooser startDateChooser;
     private JDateChooser endDateChooser;
@@ -35,7 +42,7 @@ public class RevenuePage {
         end_dateChooser.setLayout(new BorderLayout());
         end_dateChooser.add(endDateChooser, BorderLayout.CENTER);
 
-        String[] columnNames = {"Order ID", "Customer Name", "Date", "Total Amount"};
+        String[] columnNames = {"Order ID", "Staff Name", "Customer Name", "Customer Phone Number", "Status", "Total Price", "Date"};
         Object[][] data = {};
 
         DefaultTableModel model = new DefaultTableModel(data, columnNames);

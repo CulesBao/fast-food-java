@@ -4,7 +4,7 @@ import Config.SeedData;
 public class Main {
   public static void main(String[] args) {
     GlobalExceptionHandler.setup();
-    new GUI.LoginForm();
+    new GUI.OrdersPage();
     new SeedData();
   }
 }
