@@ -26,7 +26,4 @@ public class Session {
         fullName = null;
         role = null;
     }
-    public static boolean isLoggedIn() {
-        return accountId != 0;
-    }
 }
