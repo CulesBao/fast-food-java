@@ -6,6 +6,8 @@ public class OrderDTO {
   private int id;
   private int staffId;
   private String status;
+  private String customerName;
+  private String customerPhoneNumber;
   private Timestamp createdAt;
 
   public int getId() {
@@ -30,6 +32,22 @@ public class OrderDTO {
 
   public void setStatus(String status) {
     this.status = status;
+  }
+
+  public String getCustomerName() {
+    return customerName;
+  }
+
+  public void setCustomerName(String customerName) {
+    this.customerName = customerName;
+  }
+
+  public String getCustomerPhoneNumber() {
+    return customerPhoneNumber;
+  }
+
+  public void setCustomerPhoneNumber(String customerPhoneNumber) {
+    this.customerPhoneNumber = customerPhoneNumber;
   }
 
   public Timestamp getCreatedAt() {

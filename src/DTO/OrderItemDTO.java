@@ -1,6 +1,5 @@
 package DTO;
 
-import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 public class OrderItemDTO {
@@ -8,7 +7,6 @@ public class OrderItemDTO {
   private int orderId;
   private int foodId;
   private int quantity;
-  private BigDecimal unitPrice;
   private Timestamp createdAt;
 
   public int getId() {
@@ -41,14 +39,6 @@ public class OrderItemDTO {
 
   public void setQuantity(int quantity) {
     this.quantity = quantity;
-  }
-
-  public BigDecimal getUnitPrice() {
-    return unitPrice;
-  }
-
-  public void setUnitPrice(BigDecimal unitPrice) {
-    this.unitPrice = unitPrice;
   }
 
   public Timestamp getCreatedAt() {
