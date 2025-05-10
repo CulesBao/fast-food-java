@@ -72,6 +72,7 @@ public class LoginForm {
         frame.dispose();
       } else if ("Staff".equalsIgnoreCase(accountDTO.getRole())) {
         new StaffDashboard();
+        frame.dispose();
       } else {
         JOptionPane.showMessageDialog(
             frame, "Unknown role: " + accountDTO.getRole(), "Error", JOptionPane.ERROR_MESSAGE);

@@ -27,4 +27,11 @@ public class OrderItemDAL {
     }
     return orderItems;
   }
+  public void addDetailOrderItem(int orderId, int foodId, int quantity) {
+    DBHelper.executeUpdate(
+        "INSERT INTO orderItems (orderId, foodId, quantity) VALUES (?, ?, ?)",
+        orderId,
+        foodId,
+        quantity);
+  }
 }

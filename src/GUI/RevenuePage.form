@@ -189,7 +189,9 @@
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <editable value="false"/>
+            </properties>
           </component>
           <component id="f4ec2" class="javax.swing.JLabel">
             <constraints>
@@ -205,7 +207,9 @@
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <editable value="false"/>
+            </properties>
           </component>
           <component id="dd505" class="javax.swing.JLabel">
             <constraints>
@@ -221,7 +225,9 @@
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <editable value="false"/>
+            </properties>
           </component>
           <component id="76545" class="javax.swing.JLabel">
             <constraints>
