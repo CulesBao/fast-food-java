@@ -11,7 +11,7 @@ public class FoodDAL {
   public List<FoodDTO> getFoodsByName(String name) throws SQLException {
     ResultSet rs =
         DBHelper.executeQuery(
-            "SELECT * FROM food WHERE COALESCE(name, '') LIKE COALESCE(?, COALESCE(name, ''))",
+            "SELECT * FROM foods WHERE COALESCE(name, '') LIKE COALESCE(?, COALESCE(name, ''))",
             name == null || name.isEmpty() ? null : "%" + name + "%");
     List<FoodDTO> foods = new ArrayList<>();
     while (rs.next()) {
@@ -28,7 +28,7 @@ public class FoodDAL {
 
   public void createFood(FoodDTO food) throws SQLException {
     DBHelper.executeUpdate(
-        "INSERT INTO food (name, price, quantity) VALUES (?, ?, ?)",
+        "INSERT INTO foods (name, price, quantity) VALUES (?, ?, ?)",
         food.getName(),
         food.getPrice(),
         food.getQuantity());
@@ -36,7 +36,7 @@ public class FoodDAL {
 
   public void updateFood(FoodDTO food) throws SQLException {
     DBHelper.executeUpdate(
-        "UPDATE food SET name = ?, price = ?, quantity = ? WHERE id = ?",
+        "UPDATE foods SET name = ?, price = ?, quantity = ? WHERE id = ?",
         food.getName(),
         food.getPrice(),
         food.getQuantity(),
