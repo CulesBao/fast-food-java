@@ -19,16 +19,17 @@ public class StaffPage {
     private JTextField staff_id_infField;
     private JTextField staff_name_infField;
     private JTextField staff_username_infField;
-    private JTextField staff_password_infField;
     private JTextField staff_phone_infField;
-    private JButton confirmButton;
-    private JButton lockButton;
+    private JButton changeButton;
     private JButton deleteButton;
     private JTextField name_findField;
     private JTextField phone_findField;
     private JButton findButton;
     private JTextField staff_usernameField;
     private JPasswordField staff_passwordField;
+    private JButton changePasswordButton;
+    private JPasswordField new_passwordField;
+    private JPasswordField confirm_passwordField;
 
     private JFrame frame;
     private static AccountBLL accountBLL = new AccountBLL();
