@@ -27,7 +27,7 @@ public class RevenuePage {
     public RevenuePage() {
         JFrame frame = new JFrame("Revenue Page");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setPreferredSize(new Dimension(800, 600));
+        frame.setPreferredSize(new Dimension(1200, 600));
         frame.setResizable(false);
 
         frame.add(revenue_pagePanel);
