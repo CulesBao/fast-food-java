@@ -11,9 +11,12 @@ import org.mindrot.jbcrypt.BCrypt;
 public class AccountBLL {
   private final AccountDAL accountDAL = new AccountDAL();
 
-  private void checkPassword(String password) throws Exception {
-    if (password.isEmpty()) {
-      throw new Exception("Please enter password");
+  private void checkPassword(String password, String confirmPassword) throws Exception {
+    if (password.isEmpty() || confirmPassword.isEmpty()) {
+      throw new Exception("Please enter both password and confirm password");
+    }
+    if (!password.equals(confirmPassword)) {
+      throw new Exception("Password and confirm password do not match");
     }
     if (password.length() < 4) {
       throw new Exception("Password must be at least 4 characters");
@@ -66,10 +69,10 @@ public class AccountBLL {
     }
   }
 
-  public ResponseDTO registerAccount(AccountDTO accountDTO) {
+  public ResponseDTO registerAccount(AccountDTO accountDTO, String confirmPassword) {
     try {
       checkUsername(accountDTO.getUserName());
-      checkPassword(accountDTO.getPassWord());
+      checkPassword(accountDTO.getPassWord(), confirmPassword);
       accountDAL.createAccount(accountDTO);
       return new ResponseDTO(true, "Account created successfully", null);
     } catch (SQLException ex) {
@@ -92,7 +95,7 @@ public class AccountBLL {
 
   public ResponseDTO changePassword(int id, String newPassword, String confirmPassword) {
     try {
-      checkPassword(newPassword);
+      checkPassword(newPassword, confirmPassword);
       accountDAL.changePassword(id, newPassword);
       return new ResponseDTO(true, "Password changed successfully", null);
     } catch (SQLException ex) {
@@ -107,7 +110,7 @@ public class AccountBLL {
       return new ResponseDTO(
           true,
           "Get accounts successfully",
-          accountDAL.getAccountsByNameAndPhoneNumber(name, phoneNumber));
+          accountDAL.getAccountsByNameAndPhoneNumber(name, phoneNumber, "STAFF"));
     } catch (SQLException ex) {
       return new ResponseDTO(false, "Database error: " + ex.getMessage(), null);
     } catch (Exception ex) {
