@@ -54,6 +54,11 @@ public class StaffPage {
         backButton.addActionListener(e -> handleBackButton());
         add_staffButton.addActionListener(e -> handleAddButton());
         findButton.addActionListener(e -> handleFindButton());
+        staffTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                handleChangeRow();
+            }
+        });
     }
     private void handleBackButton() {
         frame.dispose();
@@ -65,10 +70,15 @@ public class StaffPage {
         String staffPassword = new String(staff_passwordField.getPassword());
         String staffPhone = staff_phoneField.getText();
 
-        AccountDTO accountDTO = new AccountDTO(staffName, staffUsername, staffPassword, staffPhone, "STAFF");
+        AccountDTO accountDTO = new AccountDTO(staffUsername, staffPassword, staffName, staffPhone, "STAFF");
         ResponseDTO responseDTO = accountBLL.registerAccount(accountDTO);
         if (responseDTO.getSuccess()) {
             JOptionPane.showMessageDialog(frame, "Staff added successfully!");
+            handleFindButton();
+            staff_nameField.setText("");
+            staff_usernameField.setText("");
+            staff_passwordField.setText("");
+            staff_phoneField.setText("");
         } else {
             JOptionPane.showMessageDialog(frame, "Failed to add staff: " + responseDTO.getMessage());
         }
@@ -94,6 +104,15 @@ public class StaffPage {
             }
         } else {
             JOptionPane.showMessageDialog(frame, "Failed to find staff: " + responseDTO.getMessage());
+        }
+    }
+    private void handleChangeRow() {
+        int selectedRow = staffTable.getSelectedRow();
+        if (selectedRow != -1) {
+            staff_id_infField.setText(staffTable.getValueAt(selectedRow, 0).toString());
+            staff_name_infField.setText(staffTable.getValueAt(selectedRow, 1).toString());
+            staff_username_infField.setText(staffTable.getValueAt(selectedRow, 2).toString());
+            staff_phone_infField.setText(staffTable.getValueAt(selectedRow, 4).toString());
         }
     }
 }

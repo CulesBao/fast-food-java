@@ -72,6 +72,9 @@ public class FoodPage {
         if (responseDTO.getSuccess()) {
             JOptionPane.showMessageDialog(frame, "Food added successfully!");
             handleFindButton();
+            food_nameField.setText("");
+            food_priceField.setText("");
+            food_quantityField.setText("");
         } else {
             JOptionPane.showMessageDialog(frame, responseDTO.getMessage());
         }
