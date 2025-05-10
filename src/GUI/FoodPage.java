@@ -114,7 +114,6 @@ public class FoodPage {
         String name = food_name_infField.getText();
         String price = food_price_infField.getText();
         String quantity = food_quantity_infField.getText();
-
         FoodDTO foodDTO = new FoodDTO(id, name, new BigDecimal(price), Integer.parseInt(quantity));
         ResponseDTO responseDTO = foodBLL.updateFood(foodDTO);
         if (responseDTO.getSuccess()) {

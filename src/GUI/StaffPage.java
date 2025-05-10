@@ -4,12 +4,12 @@ import BLL.AccountBLL;
 import DTO.AccountDTO;
 import DTO.FindAccountDTO;
 import DTO.ResponseDTO;
-
+import java.awt.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.awt.*;
 
 public class StaffPage {
+    private static AccountBLL accountBLL = new AccountBLL();
     private JPanel staff_pagePanel;
     private JButton backButton;
     private JTextField staff_nameField;
@@ -30,9 +30,8 @@ public class StaffPage {
     private JButton changePasswordButton;
     private JPasswordField new_passwordField;
     private JPasswordField confirm_passwordField;
-
+    private JPasswordField confirmPasswordField;
     private JFrame frame;
-    private static AccountBLL accountBLL = new AccountBLL();
 
     public StaffPage(){
         frame = new JFrame("Staff Page");
@@ -60,6 +59,8 @@ public class StaffPage {
                 handleChangeRow();
             }
         });
+        changeButton.addActionListener(e -> handleChangeButton());
+        changePasswordButton.addActionListener(e -> handleChangePassword());
     }
     private void handleBackButton() {
         frame.dispose();
@@ -69,10 +70,11 @@ public class StaffPage {
         String staffName = staff_nameField.getText();
         String staffUsername = staff_usernameField.getText();
         String staffPassword = new String(staff_passwordField.getPassword());
+        String comfirmPassword = new String(confirmPasswordField.getPassword());
         String staffPhone = staff_phoneField.getText();
 
         AccountDTO accountDTO = new AccountDTO(staffUsername, staffPassword, staffName, staffPhone, "STAFF");
-        ResponseDTO responseDTO = accountBLL.registerAccount(accountDTO);
+        ResponseDTO responseDTO = accountBLL.registerAccount(accountDTO, comfirmPassword);
         if (responseDTO.getSuccess()) {
             JOptionPane.showMessageDialog(frame, "Staff added successfully!");
             handleFindButton();
@@ -114,6 +116,44 @@ public class StaffPage {
             staff_name_infField.setText(staffTable.getValueAt(selectedRow, 1).toString());
             staff_username_infField.setText(staffTable.getValueAt(selectedRow, 2).toString());
             staff_phone_infField.setText(staffTable.getValueAt(selectedRow, 4).toString());
+        }
+    }
+    private void handleChangeButton(){
+        String staffId = staff_id_infField.getText();
+        String staffName = staff_name_infField.getText();
+        String staffPhone = staff_phone_infField.getText();
+        if (staffId.isEmpty()) {
+            JOptionPane.showMessageDialog(frame, "Please select a staff member to update.");
+            return;
+        }
+        AccountDTO accountDTO = new AccountDTO(Integer.parseInt(staffId), staffName, staffPhone);
+        ResponseDTO responseDTO = accountBLL.updateAccount(accountDTO);
+        if (responseDTO.getSuccess()) {
+            JOptionPane.showMessageDialog(frame, "Staff updated successfully!");
+            handleFindButton();
+        } else {
+            JOptionPane.showMessageDialog(frame, "Failed to update staff: " + responseDTO.getMessage());
+        }
+    }
+    private void handleChangePassword(){
+        String staffId = staff_id_infField.getText();
+        String newPassword = new String(new_passwordField.getPassword());
+        String confirmPassword = new String(confirm_passwordField.getPassword());
+
+        if (staffId.isEmpty()) {
+            JOptionPane.showMessageDialog(frame, "Please select a staff member to change the password.");
+            return;
+        }
+
+        if (newPassword.equals(confirmPassword)) {
+            ResponseDTO responseDTO = accountBLL.changePassword(Integer.parseInt(staffId), newPassword, confirmPassword);
+            if (responseDTO.getSuccess()) {
+                JOptionPane.showMessageDialog(frame, "Password changed successfully!");
+            } else {
+                JOptionPane.showMessageDialog(frame, "Failed to change password: " + responseDTO.getMessage());
+            }
+        } else {
+            JOptionPane.showMessageDialog(frame, "Passwords do not match!");
         }
     }
 }
