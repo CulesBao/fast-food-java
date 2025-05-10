@@ -19,6 +19,8 @@ public class OrdersPage {
     private JTable order_detailTable;
     private JTextField priceField;
     private JTextField totalField;
+    private JButton findButton;
+    private JTextField food_name_findField;
 
     public OrdersPage(){
         JFrame  frame = new JFrame("Orders Page");
