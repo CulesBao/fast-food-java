@@ -72,6 +72,7 @@ public class RevenuePage {
     viewStatsButton.addActionListener(e -> handleViewStatsButton());
     revenueTable.getSelectionModel().addListSelectionListener(e -> handleRowSelection());
     updateButton.addActionListener(e -> handleUpdateButton());
+    deleteButton.addActionListener(e -> handleDeleteButton());
   }
 
   public java.util.Date getStartDate() {
@@ -143,7 +144,8 @@ public class RevenuePage {
       status_comboBox.setSelectedItem(model.getValueAt(selectedRow, 4).toString());
     }
   }
-  private void handleUpdateButton(){
+
+  private void handleUpdateButton() {
     String orderId = order_id_infField.getText();
     String status = status_comboBox.getSelectedItem().toString();
     if (orderId.isEmpty()) {
@@ -156,6 +158,29 @@ public class RevenuePage {
       handleViewStatsButton();
     } else {
       JOptionPane.showMessageDialog(frame, responseDTO.getMessage());
+    }
+  }
+
+  private void handleDeleteButton() {
+    int option = JOptionPane.showConfirmDialog(
+        frame,
+        "Are you sure you want to delete this order?\nThis action cannot be undone.",
+        "Delete Order",
+        JOptionPane.YES_NO_OPTION);
+    if (option == JOptionPane.NO_OPTION) {
+        return;
+    }
+    String orderId = order_id_infField.getText();
+    if (!orderId.isEmpty()) {
+      ResponseDTO responseDTO = orderBLL.deleteOrder(Integer.parseInt(orderId));
+      if (responseDTO.getSuccess()) {
+        JOptionPane.showMessageDialog(frame, "Delete order successfully.");
+        handleViewStatsButton();
+      } else {
+        JOptionPane.showMessageDialog(frame, responseDTO.getMessage());
+      }
+    } else {
+      JOptionPane.showMessageDialog(frame, "Please select an order to delete.");
     }
   }
 }

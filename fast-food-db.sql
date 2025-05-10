@@ -47,3 +47,21 @@ CREATE TABLE IF NOT EXISTS orderItems (
     FOREIGN KEY (orderId) REFERENCES orders(id),
     FOREIGN KEY (foodId) REFERENCES foods(id)
     );
+ALTER TABLE orders
+DROP FOREIGN KEY orders_ibfk_1,
+ADD CONSTRAINT fk_orders_staffId
+    FOREIGN KEY (staffId) REFERENCES accounts(id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE;
+
+ALTER TABLE orderItems
+DROP FOREIGN KEY orderItems_ibfk_1,
+DROP FOREIGN KEY orderItems_ibfk_2,
+ADD CONSTRAINT fk_orderItems_orderId
+    FOREIGN KEY (orderId) REFERENCES orders(id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+                                   ADD CONSTRAINT fk_orderItems_foodId
+                                   FOREIGN KEY (foodId) REFERENCES foods(id)
+       ON DELETE CASCADE
+    ON UPDATE CASCADE;

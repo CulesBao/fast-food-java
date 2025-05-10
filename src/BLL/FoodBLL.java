@@ -47,4 +47,13 @@ public class FoodBLL {
       return new ResponseDTO(false, e.getMessage(), null);
     }
   }
+
+  public ResponseDTO deleteFood(int foodId) {
+    try {
+      foodDAL.deleteFood(foodId);
+      return new ResponseDTO(true, "Delete food successfully", null);
+    } catch (Exception e) {
+      return new ResponseDTO(false, e.getMessage(), null);
+    }
+  }
 }

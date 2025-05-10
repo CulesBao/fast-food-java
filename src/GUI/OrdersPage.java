@@ -113,6 +113,19 @@ public class OrdersPage {
       JOptionPane.showMessageDialog(frame, "Please enter the amount.");
       return;
     }
+    if (Integer.parseInt(amount) <= 0) {
+      JOptionPane.showMessageDialog(frame, "Amount must be greater than 0.");
+      return;
+    }
+    if (Integer.parseInt(amount) > Integer.parseInt(quantityField.getText())) {
+      int confirm =
+          JOptionPane.showConfirmDialog(
+              frame,
+              "The amount is greater than the available quantity. Do you want to continue?",
+              "Confirm",
+              JOptionPane.YES_NO_OPTION);
+      if (confirm == JOptionPane.NO_OPTION) return;
+    }
 
     detailOrderItems.add(
         new DetailOrderItem(
@@ -164,5 +177,16 @@ public class OrdersPage {
         orderBLL.createNewOrder(
             Session.getAccountId(), customerName, customerPhone, detailOrderItems);
     JOptionPane.showMessageDialog(frame, responseDTO.getMessage());
+    if (responseDTO.getSuccess()) {
+      detailOrderItems.clear();
+      handleFindButton();
+      totalField.setText("");
+      customer_nameField.setText("");
+      customer_phoneField.setText("");
+      tbFoodId.setText("");
+      nameField.setText("");
+      priceField.setText("");
+      quantityField.setText("");
+    }
   }
 }
