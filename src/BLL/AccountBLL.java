@@ -11,12 +11,9 @@ import org.mindrot.jbcrypt.BCrypt;
 public class AccountBLL {
   private final AccountDAL accountDAL = new AccountDAL();
 
-  private void checkPassword(String password, String confirmPassword) throws Exception {
-    if (password.isEmpty() || confirmPassword.isEmpty()) {
-      throw new Exception("Please enter both password and confirm password");
-    }
-    if (!password.equals(confirmPassword)) {
-      throw new Exception("Password and confirm password do not match");
+  private void checkPassword(String password) throws Exception {
+    if (password.isEmpty()) {
+      throw new Exception("Please enter password");
     }
     if (password.length() < 4) {
       throw new Exception("Password must be at least 4 characters");
@@ -69,10 +66,10 @@ public class AccountBLL {
     }
   }
 
-  public ResponseDTO registerAccount(AccountDTO accountDTO, String confirmPassword) {
+  public ResponseDTO registerAccount(AccountDTO accountDTO) {
     try {
       checkUsername(accountDTO.getUserName());
-      checkPassword(accountDTO.getPassWord(), confirmPassword);
+      checkPassword(accountDTO.getPassWord());
       accountDAL.createAccount(accountDTO);
       return new ResponseDTO(true, "Account created successfully", null);
     } catch (SQLException ex) {
@@ -95,7 +92,7 @@ public class AccountBLL {
 
   public ResponseDTO changePassword(int id, String newPassword, String confirmPassword) {
     try {
-      checkPassword(newPassword, confirmPassword);
+      checkPassword(newPassword);
       accountDAL.changePassword(id, newPassword);
       return new ResponseDTO(true, "Password changed successfully", null);
     } catch (SQLException ex) {

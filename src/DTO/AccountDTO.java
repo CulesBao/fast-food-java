@@ -27,6 +27,13 @@ public class AccountDTO {
     this.role = role;
     this.createdAt = createdAt;
   }
+  public AccountDTO(String userName, String passWord, String fullName, String phoneNumber, String role) {
+    this.userName = userName;
+    this.passWord = passWord;
+    this.fullName = fullName;
+    this.phoneNumber = phoneNumber;
+    this.role = role;
+  }
 
   public int getId() {
     return id;
