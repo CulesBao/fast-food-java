@@ -7,12 +7,10 @@ import java.awt.*;
 public class OrdersPage {
     private JPanel orders_pagePanel;
     private JTable food_listTable;
-    private JTextField idField;
     private JTextField nameField;
     private JTextField quantityField;
     private JButton add_foodButton;
     private JButton backButton;
-    private JButton refreshButton;
     private JButton confirmButton;
     private JButton deleteButton;
     private JTextField amountField;
@@ -25,7 +23,7 @@ public class OrdersPage {
     public OrdersPage(){
         JFrame  frame = new JFrame("Orders Page");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setPreferredSize(new Dimension(800, 600));
+        frame.setPreferredSize(new Dimension(1200, 600));
         frame.setResizable(false);
 
         frame.add(orders_pagePanel);

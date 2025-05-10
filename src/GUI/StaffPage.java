@@ -12,8 +12,6 @@ import java.awt.*;
 public class StaffPage {
     private JPanel staff_pagePanel;
     private JButton backButton;
-    private JButton refreshButton;
-    private JTextField staff_idField;
     private JTextField staff_nameField;
     private JButton add_staffButton;
     private JTable staffTable;
@@ -38,7 +36,7 @@ public class StaffPage {
     public StaffPage(){
         frame = new JFrame("Staff Page");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setPreferredSize(new Dimension(800, 600));
+        frame.setPreferredSize(new Dimension(1200, 600));
         frame.setResizable(false);
 
         frame.add(staff_pagePanel);

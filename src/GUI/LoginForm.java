@@ -18,7 +18,7 @@ public class LoginForm {
     frame = new JFrame("Fast Food");
     frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-    frame.setPreferredSize(new Dimension(800, 600));
+    frame.setPreferredSize(new Dimension(600, 400));
     frame.setResizable(false);
 
     panel1 = new JPanel();
