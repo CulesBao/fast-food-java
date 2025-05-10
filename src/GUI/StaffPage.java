@@ -1,5 +1,10 @@
 package GUI;
 
+import BLL.AccountBLL;
+import DTO.AccountDTO;
+import DTO.FindAccountDTO;
+import DTO.ResponseDTO;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -28,6 +33,7 @@ public class StaffPage {
     private JPasswordField staff_passwordField;
 
     private JFrame frame;
+    private static AccountBLL accountBLL = new AccountBLL();
 
     public StaffPage(){
         frame = new JFrame("Staff Page");
@@ -47,5 +53,49 @@ public class StaffPage {
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+        backButton.addActionListener(e -> handleBackButton());
+        add_staffButton.addActionListener(e -> handleAddButton());
+        findButton.addActionListener(e -> handleFindButton());
+    }
+    private void handleBackButton() {
+        frame.dispose();
+        new GUI.AdminDashboard();
+    }
+    private void handleAddButton() {
+        String staffName = staff_nameField.getText();
+        String staffUsername = staff_usernameField.getText();
+        String staffPassword = new String(staff_passwordField.getPassword());
+        String staffPhone = staff_phoneField.getText();
+
+        AccountDTO accountDTO = new AccountDTO(staffName, staffUsername, staffPassword, staffPhone, "STAFF");
+        ResponseDTO responseDTO = accountBLL.registerAccount(accountDTO);
+        if (responseDTO.getSuccess()) {
+            JOptionPane.showMessageDialog(frame, "Staff added successfully!");
+        } else {
+            JOptionPane.showMessageDialog(frame, "Failed to add staff: " + responseDTO.getMessage());
+        }
+    }
+    private void handleFindButton() {
+        String staffName = name_findField.getText();
+        String staffPhone = phone_findField.getText();
+
+        ResponseDTO responseDTO = accountBLL.getAccountsByNameAndPhoneNumber(staffName, staffPhone);
+        if (responseDTO.getSuccess()) {
+            DefaultTableModel model = (DefaultTableModel) staffTable.getModel();
+            model.setRowCount(0);
+            @SuppressWarnings("unchecked")
+            java.util.List<FindAccountDTO> accountList = (java.util.List<FindAccountDTO>) responseDTO.getData();
+            for (FindAccountDTO account : accountList) {
+                model.addRow(new Object[]{
+                        account.getId(),
+                        account.getFullName(),
+                        account.getUserName(),
+                        account.getCreatedAt(),
+                        account.getPhoneNumber()
+                });
+            }
+        } else {
+            JOptionPane.showMessageDialog(frame, "Failed to find staff: " + responseDTO.getMessage());
+        }
     }
 }
