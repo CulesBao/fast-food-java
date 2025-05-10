@@ -70,4 +70,7 @@ public class OrderDAL {
   public void updateOrderStatus(int orderId, String status) throws SQLException {
     DBHelper.executeUpdate("UPDATE orders SET status = ? WHERE id = ?", status, orderId);
   }
+  public void deleteOrder(int orderId) throws SQLException {
+    DBHelper.executeUpdate("DELETE FROM orders WHERE id = ?", orderId);
+  }
 }

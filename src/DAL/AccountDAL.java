@@ -41,8 +41,8 @@ public class AccountDAL {
         account.getRole());
   }
 
-  public List<FindAccountDTO> getAccountsByNameAndPhoneNumber(String name, String phoneNumber, String role)
-      throws SQLException {
+  public List<FindAccountDTO> getAccountsByNameAndPhoneNumber(
+      String name, String phoneNumber, String role) throws SQLException {
     ResultSet rs =
         DBHelper.executeQuery(
             "SELECT * FROM accounts WHERE "
@@ -50,7 +50,8 @@ public class AccountDAL {
                 + "(COALESCE(phoneNumber, '') LIKE COALESCE(?, COALESCE(phoneNumber, '')))"
                 + "AND role = ?",
             name == null || name.isEmpty() ? null : "%" + name + "%",
-            phoneNumber == null || phoneNumber.isEmpty() ? null : "%" + phoneNumber + "%", role);
+            phoneNumber == null || phoneNumber.isEmpty() ? null : "%" + phoneNumber + "%",
+            role);
     List<FindAccountDTO> accounts = new ArrayList<>();
     while (rs.next()) {
       accounts.add(
@@ -65,30 +66,20 @@ public class AccountDAL {
     return accounts;
   }
 
-  public AccountDTO getAccountById(int id) throws SQLException {
-    ResultSet rs = DBHelper.executeQuery("SELECT * FROM accounts WHERE id = ?", id);
-    if (rs.next()) {
-      return new AccountDTO(
-          rs.getInt("id"),
-          rs.getString("username"),
-          rs.getString("password"),
-          rs.getString("fullName"),
-          rs.getString("phoneNumber"),
-          rs.getString("role"),
-          rs.getTimestamp("createdAt"));
-    }
-    return null;
-  }
-
   public void changePassword(int id, String newPassword) throws SQLException {
     String hashedPassword = BCrypt.hashpw(newPassword, BCrypt.gensalt());
     DBHelper.executeUpdate("UPDATE accounts SET password = ? WHERE id = ?", hashedPassword, id);
   }
+
   public void updateAccount(AccountDTO account) throws SQLException {
     DBHelper.executeUpdate(
         "UPDATE accounts SET fullName = ?, phoneNumber = ? WHERE id = ?",
         account.getFullName(),
         account.getPhoneNumber(),
         account.getId());
+  }
+
+  public void deleteAccount(int id) throws SQLException {
+    DBHelper.executeUpdate("DELETE FROM accounts WHERE id = ?", id);
   }
 }

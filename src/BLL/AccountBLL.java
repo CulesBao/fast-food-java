@@ -117,4 +117,15 @@ public class AccountBLL {
       return new ResponseDTO(false, ex.getMessage(), null);
     }
   }
+
+  public ResponseDTO deleteAccount(int id) {
+    try {
+      accountDAL.deleteAccount(id);
+      return new ResponseDTO(true, "Account deleted successfully", null);
+    } catch (SQLException ex) {
+      return new ResponseDTO(false, "Database error: " + ex.getMessage(), null);
+    } catch (Exception ex) {
+      return new ResponseDTO(false, ex.getMessage(), null);
+    }
+  }
 }

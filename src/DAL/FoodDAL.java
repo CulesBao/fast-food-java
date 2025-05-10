@@ -42,4 +42,13 @@ public class FoodDAL {
         food.getQuantity(),
         food.getId());
   }
+
+  public void updateQuantityByTransactionId(int foodId, int quantity) throws SQLException {
+    DBHelper.executeUpdate(
+        "UPDATE foods SET quantity = quantity - ? WHERE id = ?", quantity, foodId);
+  }
+
+  public void deleteFood(int foodId) throws SQLException {
+    DBHelper.executeUpdate("DELETE FROM foods WHERE id = ?", foodId);
+  }
 }
