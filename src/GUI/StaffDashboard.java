@@ -14,6 +14,9 @@ public class StaffDashboard {
   private JPanel accountPanel;
   private JLabel ordersImage;
   private JLabel accountImage;
+    private JButton revenueButton;
+  private JLabel revenueImage;
+  private JButton button2;
 
   public StaffDashboard() {
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
