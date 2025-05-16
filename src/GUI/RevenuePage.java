@@ -73,6 +73,11 @@ public class RevenuePage {
     revenueTable.getSelectionModel().addListSelectionListener(e -> handleRowSelection());
     updateButton.addActionListener(e -> handleUpdateButton());
     deleteButton.addActionListener(e -> handleDeleteButton());
+    detailButton.addActionListener(e -> handleDetailButton());
+
+    if (Session.getRole().equals("STAFF")) {
+      deleteButton.setVisible(false);
+    }
   }
 
   public java.util.Date getStartDate() {
@@ -162,13 +167,14 @@ public class RevenuePage {
   }
 
   private void handleDeleteButton() {
-    int option = JOptionPane.showConfirmDialog(
-        frame,
-        "Are you sure you want to delete this order?\nThis action cannot be undone.",
-        "Delete Order",
-        JOptionPane.YES_NO_OPTION);
+    int option =
+        JOptionPane.showConfirmDialog(
+            frame,
+            "Are you sure you want to delete this order?\nThis action cannot be undone.",
+            "Delete Order",
+            JOptionPane.YES_NO_OPTION);
     if (option == JOptionPane.NO_OPTION) {
-        return;
+      return;
     }
     String orderId = order_id_infField.getText();
     if (!orderId.isEmpty()) {
@@ -182,5 +188,17 @@ public class RevenuePage {
     } else {
       JOptionPane.showMessageDialog(frame, "Please select an order to delete.");
     }
+  }
+  private void handleDetailButton(){
+    if (order_id_infField.getText() == null || order_id_infField.getText().isEmpty()) {
+      JOptionPane.showMessageDialog(frame, "Please select an order to view details.");
+      return;
+    }
+    int orderId = Integer.parseInt(order_id_infField.getText());
+    String customerName = customer_name_infField.getText();
+    String customerPhone = customer_phone_infField.getText();
+
+    new OrderDetails(orderId, customerName, customerPhone);
+
   }
 }
