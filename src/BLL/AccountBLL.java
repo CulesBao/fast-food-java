@@ -110,7 +110,7 @@ public class AccountBLL {
       return new ResponseDTO(
           true,
           "Get accounts successfully",
-          accountDAL.getAccountsByNameAndPhoneNumber(name, phoneNumber, "STAFF"));
+          accountDAL.getAccountsByNameAndPhoneNumber(name, phoneNumber));
     } catch (SQLException ex) {
       return new ResponseDTO(false, "Database error: " + ex.getMessage(), null);
     } catch (Exception ex) {

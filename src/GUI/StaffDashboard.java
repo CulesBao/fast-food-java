@@ -25,6 +25,7 @@ public class StaffDashboard {
     frame.setVisible(true);
     logoutButton.addActionListener(e -> handleLogOut());
     ordersButton.addActionListener(e -> handleOrderButton());
+    revenueButton.addActionListener(e -> handleRevenueButton());
   }
 
 
@@ -43,5 +44,9 @@ public class StaffDashboard {
   private void handleOrderButton() {
     frame.dispose();
     new OrdersPage();
+  }
+  private void handleRevenueButton() {
+    frame.dispose();
+    new RevenuePage();
   }
 }

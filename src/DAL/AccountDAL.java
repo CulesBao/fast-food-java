@@ -42,16 +42,14 @@ public class AccountDAL {
   }
 
   public List<FindAccountDTO> getAccountsByNameAndPhoneNumber(
-      String name, String phoneNumber, String role) throws SQLException {
+      String name, String phoneNumber) throws SQLException {
     ResultSet rs =
         DBHelper.executeQuery(
             "SELECT * FROM accounts WHERE "
                 + "(COALESCE(fullName, '') LIKE COALESCE(?, COALESCE(fullName, ''))) AND "
-                + "(COALESCE(phoneNumber, '') LIKE COALESCE(?, COALESCE(phoneNumber, '')))"
-                + "AND role = ?",
+                + "(COALESCE(phoneNumber, '') LIKE COALESCE(?, COALESCE(phoneNumber, '')))",
             name == null || name.isEmpty() ? null : "%" + name + "%",
-            phoneNumber == null || phoneNumber.isEmpty() ? null : "%" + phoneNumber + "%",
-            role);
+            phoneNumber == null || phoneNumber.isEmpty() ? null : "%" + phoneNumber + "%");
     List<FindAccountDTO> accounts = new ArrayList<>();
     while (rs.next()) {
       accounts.add(

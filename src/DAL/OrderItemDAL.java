@@ -10,7 +10,7 @@ public class OrderItemDAL {
   public List<DetailOrderItem> getOrderItemsByOrderId(int orderId) {
     ResultSet rs =
         DBHelper.executeQuery(
-            "SELECT * FROM orderItems o JOIN foods f ON o.foodId = f.id WHERE o.id = ?" + orderId);
+            "SELECT * FROM orderItems o JOIN foods f ON o.foodId = f.id WHERE o.orderId = ?", orderId);
     List<DetailOrderItem> orderItems = new ArrayList<>();
     try {
       while (rs.next()) {
